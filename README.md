@@ -1,2 +1,2 @@
-# google_doc_sd
-Projecto de sistemas distribuídos sobre um sistema de documentos colaborativo.
+# JI SYNC
+Sistema de edição colaborativa de documentos, desenvolvido para permitir que múltiplos usuários criem, editem e compartilhem conteúdos em tempo real.

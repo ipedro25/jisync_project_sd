@@ -3,6 +3,7 @@
 <html lang="pt"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/png" href="/public/assets/login.png">
 <title>JI SYNC | Colabore. Crie. Sincronize.</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link rel="stylesheet" href="/css/global-font.css" />
@@ -124,8 +125,18 @@
 <header class="docked full-width top-0 sticky z-50 bg-surface/80 glass-nav border-b border-outline-variant/30 shadow-sm transition-all duration-300">
 <div class="flex justify-between items-center max-w-7xl mx-auto px-margin-mobile md:px-gutter h-20">
 <div class="flex items-center gap-stack-md">
-<img alt="JI SYNC Logo" class="h-10 w-auto" src="/assets/logo.svg" srcset="/assets/logo-sm.svg 120w, /assets/logo.svg 240w" sizes="(max-width:640px) 120px, 240px" />
-<span class="font-headline-xl text-headline-md font-bold text-primary">JI SYNC</span>
+    <a href="/" 
+       class="flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-lg hover:bg-secondary transition-all active:scale-95 duration-150 ease-in-out">
+        
+        <span class="material-symbols-outlined">
+            sync
+        </span>
+
+        <span class="font-headline-xl text-headline-md font-bold">
+            JI SYNC
+        </span>
+
+    </a>
 </div>
 <nav class="hidden md:flex items-center gap-stack-lg">
     <a class="font-label-md text-label-md text-primary dark:text-primary-fixed-dim border-b-2 border-transparent hover:border-primary font-bold pb-1" href="#features">Funcionalidades</a>
@@ -138,7 +149,7 @@
     <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-surface-container-low transition">
         <span class="material-symbols-outlined">menu</span>
     </button>
-    <a class="hidden md:block font-label-md text-label-md text-primary hover:bg-primary/5 px-4 py-2 rounded-lg transition-all" href="/login.html">Aceder</a>
+    <a class="hidden md:block font-label-md text-label-md text-primary hover:bg-primary/5 px-4 py-2 rounded-lg transition-all" href="/login.html" target="_blank">Aceder</a>
     <a href="/login.html" class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg hover:bg-secondary transition-all active:scale-95 duration-150 ease-in-out">
         Iniciar gratuitamente
     </a>
@@ -150,8 +161,8 @@
     <a class="block py-2 px-3 rounded hover:bg-surface-container-low" href="#security">Segurança</a>
     <a class="block py-2 px-3 rounded hover:bg-surface-container-low" href="#pricing">Preços</a>
     <div class="border-t my-2"></div>
-    <a class="block py-2 px-3 rounded hover:bg-surface-container-low" href="/login.html">Aceder</a>
-    <a class="block py-2 px-3 mt-2 rounded bg-primary text-on-primary text-center" href="/register.html">Iniciar gratuitamente</a>
+    <a class="block py-2 px-3 rounded hover:bg-surface-container-low" href="/login.html" target="_blank">Aceder</a>
+    <a class="block py-2 px-3 mt-2 rounded bg-primary text-on-primary text-center" href="/register.html" target="_blank">Iniciar gratuitamente</a>
 </div>
 </div>
 </header>
@@ -407,20 +418,31 @@
             <div class="p-8 bg-white rounded-2xl border border-outline-variant/20">
                 <h3 class="font-headline-md mb-2">Free</h3>
                 <p class="text-body-md text-on-surface-variant mb-4">Até 3 utilizadores • Edição básica • 1GB armazenamento</p>
-                <div class="text-3xl font-bold mb-4">€0<span class="text-sm font-label-sm">/mês</span></div>
+                <div class="text-3xl font-bold mb-4">0 Kz<span class="text-sm font-label-sm">/mês</span></div>
                 <a href="/register.html" class="inline-block bg-primary text-on-primary px-6 py-3 rounded-lg">Começar grátis</a>
             </div>
             <div class="p-8 bg-white rounded-2xl border border-outline-variant/20">
                 <h3 class="font-headline-md mb-2">Team</h3>
                 <p class="text-body-md text-on-surface-variant mb-4">Até 50 utilizadores • Colaboração em tempo real • 100GB armazenamento • Suporte por email</p>
-                <div class="text-3xl font-bold mb-4">€8<span class="text-sm font-label-sm">/utilizador/mês</span></div>
+                <div class="text-3xl font-bold mb-4">5.000 Kz<span class="text-sm font-label-sm">/utilizador/mês</span></div>
                 <a href="/register.html" class="inline-block bg-primary text-on-primary px-6 py-3 rounded-lg">Testar 14 dias</a>
             </div>
             <div class="p-8 bg-white rounded-2xl border border-outline-variant/20">
                 <h3 class="font-headline-md mb-2">Enterprise</h3>
-                <p class="text-body-md text-on-surface-variant mb-4">Limites ilimitados • SLA • Onboarding + Suporte dedicado • Integrações SSO</p>
-                <div class="text-3xl font-bold mb-4">Contacte-nos</div>
-                <a href="/contact.html" class="inline-block border border-primary text-primary px-6 py-3 rounded-lg">Contactar Vendas</a>
+
+                <p class="text-body-md text-on-surface-variant mb-4">
+                    +50 utilizadores • 4 500 Kz/utilizador/mês • SLA • 
+                    Onboarding dedicado • Suporte prioritário • Integrações SSO
+                </p>
+
+                <div class="text-3xl font-bold mb-4">
+                    4.500 Kz <span class="text-lg font-normal">/ utilizador/mês</span>
+                </div>
+
+                <a href="/contact.html" 
+                class="inline-block bg-primary text-on-primary px-6 py-3 rounded-lg">
+                    Contactar Vendas
+                </a>
             </div>
         </div>
         <p class="mt-8 text-label-sm text-outline">Preços indicativos. Para cotações e descontos por volume, contacte a nossa equipa.</p>
@@ -489,7 +511,7 @@
 <div class="flex flex-col gap-4">
 <div class="flex items-center gap-stack-md">
 <img alt="JI SYNC Footer Logo" class="h-8 w-auto grayscale" src="/assets/footer-logo.svg" srcset="/assets/logo-sm.svg 120w, /assets/footer-logo.svg 240w" sizes="(max-width:640px) 120px, 240px"/>
-<span class="font-headline-md text-headline-md font-bold text-on-surface">JI SYNC</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface"></span>
 </div>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-sm">
                     A plataforma de sincronização de documentos feita para o futuro do trabalho colaborativo.

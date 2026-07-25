@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <link rel="icon" type="image/png" href="/public/assets/login.png">
 <title>Dashboard | JI Sync</title>
-<link rel="stylesheet" href="/css/global-font.css" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500&family=Public+Sans:wght@500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --primary:        #003289;
-    --primary-dim:    #0D47B5;
+    --primary:        #3366cc;
+    --primary-dim:    #2255bb;
     --on-primary:     #ffffff;
     --surface:        #faf9fa;
     --surface-low:    #f5f3f4;
@@ -84,7 +85,9 @@
     position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
     color: var(--outline); font-size: 20px; pointer-events: none;
   }
-  .topbar-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+  .topbar-actions { display: flex; align-items: center; gap: 14px; margin-left: auto; }
+  .topbar-icon-group { display: flex; align-items: center; gap: 4px; }
+  .topbar-divider { width: 1px; height: 22px; background: var(--outline-var); }
   .avatar {
     width: 36px; height: 36px; border-radius: 50%;
     background: var(--primary);
@@ -240,7 +243,7 @@
   .quick-card-thumb .material-symbols-outlined {
     font-size: 36px;
   }
-  .thumb-word   { background: #e8f0fe; color:  #0D47B5 }
+  .thumb-word   { background: #e8f0fe; color: #3366cc; }
   .thumb-excel  { background: #e6f4ea; color: #1a7340; }
   .thumb-blank  { background: var(--surface-low); color: var(--outline); }
   .quick-card-label {
@@ -399,7 +402,7 @@
     font-size: 9px; font-weight: 700;
     letter-spacing: 0.1em; text-transform: uppercase;
   }
-  .badge-word  { background: #0D47B5; color: #ffffff; }
+  .badge-word  { background: #3366cc; color: #fff; }
   .badge-excel { background: #1a7340; color: #fff; }
   .doc-card-actions {
     position: absolute; top: 8px; right: 8px;
@@ -455,7 +458,7 @@
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
-  .list-icon-word  { background: #e8f0fe; color: #0D47B5 }
+  .list-icon-word  { background: #e8f0fe; color: #3366cc; }
   .list-icon-excel { background: #e6f4ea; color: #1a7340; }
   .list-meta {
     font-size: 13px; color: var(--on-surface-var);
@@ -586,7 +589,7 @@
   .modal-type-option:hover { border-color: var(--primary); }
   .modal-type-option.selected { border-color: var(--primary); background: #f0f4ff; }
   .modal-type-option .material-symbols-outlined { font-size: 32px; display: block; margin-bottom: 8px; }
-  .modal-type-option.word-opt  .material-symbols-outlined { color: #0D47B5 }
+  .modal-type-option.word-opt  .material-symbols-outlined { color: #3366cc; }
   .modal-type-option.excel-opt .material-symbols-outlined { color: #1a7340; }
   .modal-type-label { font-size: 13px; font-weight: 500; color: var(--on-surface); }
   .modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 28px; }
@@ -654,15 +657,18 @@
     <input type="text" id="searchInput" placeholder="Pesquisar documentos..." oninput="filterDocs()"/>
   </div>
   <div class="topbar-actions">
-    <a class="icon-btn" href="projects.html" title="Projectos" style="text-decoration:none;display:flex;align-items:center;justify-content:center">
-      <span class="material-symbols-outlined" style="font-size:20px">folder</span>
-    </a>
-    <button class="icon-btn" title="Notificações">
-      <span class="material-symbols-outlined" style="font-size:20px">notifications</span>
-    </button>
-    <button class="icon-btn" title="Definições">
-      <span class="material-symbols-outlined" style="font-size:20px">settings</span>
-    </button>
+    <div class="topbar-icon-group">
+      <a class="icon-btn" href="projects.html" title="Projectos" style="text-decoration:none;display:flex;align-items:center;justify-content:center">
+        <span class="material-symbols-outlined" style="font-size:20px">folder</span>
+      </a>
+      <button class="icon-btn" title="Notificações">
+        <span class="material-symbols-outlined" style="font-size:20px">notifications</span>
+      </button>
+      <button class="icon-btn" title="Definições">
+        <span class="material-symbols-outlined" style="font-size:20px">settings</span>
+      </button>
+    </div>
+    <div class="topbar-divider"></div>
     <div class="avatar" title="Perfil" id="avatarBtn" onclick="toggleUserMenu()">VM</div>
   <!-- USER MENU -->
   <div class="user-menu" id="userMenu">
@@ -706,28 +712,28 @@
 <section class="quick-section fade-up delay-1">
   <div class="section-label">Criar novo</div>
   <div class="quick-grid">
-    <button class="quick-card" onclick="openModal('word')">
+    <button class="quick-card" onclick="createQuickDocument('word', null, 'Novo documento')">
       <div class="quick-card-thumb thumb-word">
         <span class="material-symbols-outlined">article</span>
       </div>
       <div class="quick-card-label">Documento em branco</div>
       <div class="quick-card-sub">Word</div>
     </button>
-    <button class="quick-card" onclick="openModal('excel')">
+    <button class="quick-card" onclick="createQuickDocument('excel', null, 'Nova folha de cálculo')">
       <div class="quick-card-thumb thumb-excel">
         <span class="material-symbols-outlined">table_chart</span>
       </div>
       <div class="quick-card-label">Folha de cálculo</div>
       <div class="quick-card-sub">Excel</div>
     </button>
-    <button class="quick-card" onclick="openModal('word')">
+    <button class="quick-card" onclick="createQuickDocument('word', 'report', 'Relatório')">
       <div class="quick-card-thumb thumb-blank">
         <span class="material-symbols-outlined">description</span>
       </div>
       <div class="quick-card-label">Relatório</div>
       <div class="quick-card-sub">Modelo Word</div>
     </button>
-    <button class="quick-card" onclick="openModal('excel')">
+    <button class="quick-card" onclick="createQuickDocument('excel', 'analysis', 'Análise de dados')">
       <div class="quick-card-thumb thumb-excel">
         <span class="material-symbols-outlined">analytics</span>
       </div>
@@ -1038,6 +1044,22 @@
   function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
   function closeModalOutside(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
 
+  // Cria directamente, sem passar pelo popup de escolha — usado pelos
+  // cartões rápidos "Documento em branco" / "Folha de cálculo" / etc.
+  async function createQuickDocument(type, template, defaultName) {
+    try {
+      const result = await apiFetch('/documents', {
+        method: 'POST',
+        body: JSON.stringify({ name: defaultName, type, template: template || undefined }),
+      });
+      showToast(`"${defaultName}" criado`);
+      openDoc(result.id, type);
+    } catch (err) {
+      console.error('[Dashboard] Criar documento falhou:', err.message);
+      showToast('Erro ao criar o documento');
+    }
+  }
+
   // ── HISTORY MODAL ──
   async function openHistory(docId, docName) {
     document.getElementById('historyTitle').textContent = `Histórico — ${docName}`;
@@ -1088,7 +1110,7 @@
     try {
       const result = await apiFetch('/documents', {
         method: 'POST',
-        body: JSON.stringify({ name }),
+        body: JSON.stringify({ name, type: selectedType }),
       });
       const doc = {
         id:    result.id,
@@ -1238,22 +1260,22 @@ Esta acção não pode ser desfeita.`)) return;
     <div style="display:flex;flex-direction:column;gap:8px;max-width:360px;">
       <div style="display:flex;align-items:center;gap:12px;">
         <img src="/assets/footer-logo.svg" alt="JI SYNC" style="height:32px;filter:grayscale(1);"/>
-        <span style="font-weight:700;color:var(--on-surface);">JI SYNC</span>
+        <span style="font-weight:300;color:var(--on-surface);"></span>
       </div>
       <p style="color:var(--on-surface-var);margin:0;">A plataforma de sincronização de documentos feita para o futuro do trabalho colaborativo.</p>
       <p style="color:var(--outline);font-size:12px;margin:0;">© 2026 JI SYNC. Todos os direitos reservados.</p>
     </div>
     <div style="display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start;">
       <div style="display:flex;flex-direction:column;gap:8px;">
-        <strong style="font-size:12px;color:var(--outline);text-transform:uppercase;">Legal</strong>
-        <a href="#" style="color:var(--on-surface-var);text-decoration:none;">Privacidade</a>
-        <a href="#" style="color:var(--on-surface-var);text-decoration:none;">Termos de Serviço</a>
+        <strong style="font-size:14px;color:var(--outline);text-transform:uppercase;">Legal</strong>
+        <a href="#" style="color:var(--on-surface-var);text-decoration:none; font-size: 14px;">Privacidade</a>
+        <a href="#" style="color:var(--on-surface-var);text-decoration:none; font-size: 14px;">Termos de Serviço</a>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;">
-        <strong style="font-size:12px;color:var(--outline);text-transform:uppercase;">Recursos</strong>
-        <a href="#" style="color:var(--on-surface-var);text-decoration:none;">Blog</a>
-        <a href="#" style="color:var(--on-surface-var);text-decoration:none;">Segurança</a>
-        <a href="#" style="color:var(--on-surface-var);text-decoration:none;">Contacto</a>
+        <strong style="font-size:14px;color:var(--outline);text-transform:uppercase;">Recursos</strong>
+        <a href="#" style=" font-size: 14px; color:var(--on-surface-var);text-decoration:none;">Blog</a>
+        <a href="#" style="font-size: 14px; color:var(--on-surface-var);text-decoration:none;">Segurança</a>
+        <a href="#" style="font-size: 14px; color:var(--on-surface-var);text-decoration:none;">Contacto</a>
       </div>
     </div>
   </div>

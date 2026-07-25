@@ -5,6 +5,7 @@
 
 const rooms = {}; // roomId -> { users: {socketId:{name,color}}, viewers: {socketId:{name,color}} }
 
+
 function joinRoom(roomId, socketId, user, color, isViewer = false) {
   if (!rooms[roomId]) rooms[roomId] = { users: {}, viewers: {} };
   if (isViewer) rooms[roomId].viewers[socketId] = { name: user.name, color };

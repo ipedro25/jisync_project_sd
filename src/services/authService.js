@@ -4,16 +4,11 @@ const { secret, expiresIn } = require("../config/jwt");
 const userModel = require("../models/userModel");
 
 const SALT_ROUNDS = 12;
-
-// ── Rate limiting do login (em memória) ──
-// NOTA: isto é guardado em memória do processo Node — reinicia se o
-// servidor reiniciar, e não é partilhado entre múltiplas instâncias/réplicas
-// do servidor. Para produção a sério, isto devia ir para o Redis. Para este
-// projecto, é suficiente para travar ataques de força bruta básicos.
 const MAX_ATTEMPTS  = 5;
 const LOCKOUT_MS    = 15 * 60 * 1000; // 15 minutos
 const loginAttempts = new Map(); // name -> { count, lockedUntil }
 
+//Função para verificar se o utilizador está bloqueado devido a tentativas falhadas 
 function checkLockout(name) {
   const entry = loginAttempts.get(name);
   if (!entry) return;

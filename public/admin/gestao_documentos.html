@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html lang="pt-PT"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/png" href="/public/assets/login.png">
+<title>JI Sync | Gestão de Documentos</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:wght@600;700&amp;family=Public+Sans:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#ffe8db",
+                        "surface-bright": "#faf9fa",
+                        "surface-variant": "#e3e2e3",
+                        "surface-container-high": "#e9e8e9",
+                        "inverse-on-surface": "#f1f0f1",
+                        "tertiary-fixed": "#ffdbc8",
+                        "secondary": "#6d5e00",
+                        "outline": "#737784",
+                        "secondary-fixed": "#f8e37f",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e3e2e3",
+                        "on-tertiary-fixed-variant": "#743500",
+                        "inverse-surface": "#2f3032",
+                        "primary-fixed": "#d9e2ff",
+                        "primary-container": "#3366cc",
+                        "on-primary-fixed": "#001946",
+                        "outline-variant": "#c3c6d5",
+                        "on-secondary-fixed": "#211b00",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#00419d",
+                        "secondary-fixed-dim": "#dbc766",
+                        "on-secondary-fixed-variant": "#524600",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b1c5ff",
+                        "surface-container-low": "#f4f3f4",
+                        "on-tertiary-fixed": "#321300",
+                        "background": "#faf9fa",
+                        "on-background": "#1a1c1d",
+                        "surface-dim": "#dadadb",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#e7ebff",
+                        "surface": "#faf9fa",
+                        "on-secondary-container": "#716205",
+                        "tertiary-fixed-dim": "#ffb68a",
+                        "surface-tint": "#2259bf",
+                        "surface-container": "#eeedee",
+                        "tertiary": "#863e00",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#b1c5ff",
+                        "on-surface-variant": "#434653",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#f5e07c",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#ab5100",
+                        "on-surface": "#1a1c1d",
+                        "primary": "#094cb2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "2xl": "48px",
+                        "header-height": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Noto Serif"],
+                        "label-sm": ["Public Sans"],
+                        "label-lg": ["Public Sans"],
+                        "headline-lg": ["Noto Serif"],
+                        "display-lg": ["Noto Serif"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "label-md": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #faf9fa; color: #1a1c1d; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .active-nav-border { border-bottom: 2px solid #ffffff; }
+        .document-table-row:hover { background-color: #f4f3f4; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c3c6d5; border-radius: 10px; }
+        .duplicate-alert { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .7; } }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-lg h-header-height bg-primary-container shadow-sm">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md font-bold text-on-primary">JI Sync</span>
+<nav class="hidden md:flex items-center gap-lg">
+<a href="/admin/index.html" class="font-body-md text-body-md text-on-primary-container opacity-80 hover:bg-primary/10 transition-colors px-md rounded-lg py-2">Dashboard</a>
+<a href="/admin/gestao_utilizadores.html" class="font-body-md text-body-md text-on-primary-container opacity-80 hover:bg-primary/10 transition-colors px-md rounded-lg py-2" href="#">Utilizadores</a>
+<a href="/admin/gestao_documentos.html" class="font-body-md text-body-md text-on-primary border-b-2 border-on-primary py-2 h-full flex items-center" >Documentos</a>
+<a href="/admin/gestao_projectos.html" class="font-body-md text-body-md text-on-primary-container opacity-80 hover:bg-primary/10 transition-colors px-md rounded-lg py-2">Projectos</a>
+<a href="/admin/gestao_auditoria.html" class="font-body-md text-body-md text-on-primary-container opacity-80 hover:bg-primary/10 transition-colors px-md rounded-lg py-2">Auditoria</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-primary-container opacity-70">search</span>
+<input class="bg-primary/20 text-on-primary border-none rounded-full pl-10 pr-4 py-2 w-64 focus:ring-2 focus:ring-on-primary-container placeholder:text-on-primary-container/60" placeholder="Procurar ficheiros..." type="text"/>
+</div>
+<div class="flex items-center gap-xs">
+<button class="p-2 text-on-primary hover:bg-primary/10 transition-colors rounded-full" title="Notificações">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-primary hover:bg-primary/10 transition-colors rounded-full" title="Definições">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="p-2 text-on-primary hover:bg-primary/10 transition-colors rounded-full" title="Conta">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-[80px] pb-xl px-lg md:px-xl max-w-container-max mx-auto">
+<!-- Dashboard Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Gestão de Documentos</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Gerencie os ficheiros da organização, proprietários e permissões.</p>
+</div>
+<div class="flex gap-md">
+<button class="flex items-center gap-sm px-lg h-10 bg-surface-container-high text-primary font-semibold border border-outline-variant hover:bg-surface-container-highest transition-all rounded-lg">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+<span class="font-label-lg text-label-lg">Filtros</span>
+</button>
+<button class="flex items-center gap-sm px-lg h-10 bg-primary text-on-primary font-semibold hover:opacity-90 transition-all rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+<span class="font-label-lg text-label-lg">Carregar Ficheiro</span>
+</button>
+</div>
+</div>
+<!-- Document List Container -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<!-- Table Header -->
+<div class="grid grid-cols-12 bg-surface-container-low border-b border-outline-variant px-lg py-sm">
+<div class="col-span-5 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Nome do Ficheiro</div>
+<div class="col-span-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Proprietário</div>
+<div class="col-span-2 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Criação</div>
+<div class="col-span-1 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Tamanho</div>
+<div class="col-span-1 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Acções</div>
+</div>
+<!-- Table Body -->
+<div class="divide-y divide-surface-container-high">
+<!-- Row 1 (Duplicate Alert) -->
+<div class="grid grid-cols-12 px-lg py-md document-table-row transition-colors items-center">
+<div class="col-span-5 flex items-center gap-md">
+<div class="w-10 h-10 bg-error-container text-on-error-container rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-sm">
+<span class="font-body-md text-body-md font-semibold text-on-surface">relatorio_financeiro_q3.pdf</span>
+<span class="bg-error text-on-error px-2 py-0.5 rounded-full font-label-sm text-[10px] duplicate-alert flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+                                    DUPLICADO
+                                </span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Documentos Corporativos / 2024</span>
+</div>
+</div>
+<div class="col-span-3 flex items-center gap-sm">
+<div class="w-7 h-7 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-sm">RA</div>
+<span class="font-body-md text-body-md">Ricardo Alves</span>
+</div>
+<div class="col-span-2 font-body-md text-body-md text-on-surface-variant">12 Out 2023</div>
+<div class="col-span-1 font-body-md text-body-md text-on-surface-variant">2.4 MB</div>
+<div class="col-span-1 flex justify-end gap-xs">
+<button class="p-1.5 hover:bg-primary-container/10 text-on-surface-variant rounded-lg transition-all" title="Renomear">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 hover:bg-primary-container/10 text-on-surface-variant rounded-lg transition-all" title="Alterar Proprietário">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+</button>
+<button class="p-1.5 hover:bg-error/10 text-error rounded-lg transition-all" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-12 px-lg py-md document-table-row transition-colors items-center">
+<div class="col-span-5 flex items-center gap-md">
+<div class="w-10 h-10 bg-secondary-container text-on-secondary-container rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined" data-icon="table_chart">table_chart</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">base_dados_clientes_v2.csv</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Marketing / Leads</span>
+</div>
+</div>
+<div class="col-span-3 flex items-center gap-sm">
+<div class="w-7 h-7 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-label-sm">MS</div>
+<span class="font-body-md text-body-md">Marta Soares</span>
+</div>
+<div class="col-span-2 font-body-md text-body-md text-on-surface-variant">15 Out 2023</div>
+<div class="col-span-1 font-body-md text-body-md text-on-surface-variant">15.8 MB</div>
+<div class="col-span-1 flex justify-end gap-xs">
+<button class="p-1.5 hover:bg-primary-container/10 text-on-surface-variant rounded-lg transition-all" title="Renomear">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 hover:bg-primary-container/10 text-on-surface-variant rounded-lg transition-all" title="Alterar Proprietário">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+</button>
+<button class="p-1.5 hover:bg-error/10 text-error rounded-lg transition-all" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Row 3 (Image Example) -->
+<div class="grid grid-cols-12 px-lg py-md document-table-row transition-colors items-center">
+<div class="col-span-5 flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg overflow-hidden shadow-sm relative group">
+<img class="w-full h-full object-cover" data-alt="A clean, professional macro shot of a white paper document edge with sharp focus on a silver paperclip. The lighting is bright and corporate, following a high-key light mode aesthetic with soft blue and grey shadows. The background is a blurred minimalist office setting with clean lines and a professional, reliable atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhqZ-CJW2krl7eVoRRGI1jaAkaNU0VFAmZeENapyhHdd_oxFa-F6IASyVSnu0HJD5OzeLHUbtgFlT7WEbyBB2N5BDWOIy_frYrpCM7ipTpbT7vhRyRnssZhlOQXoy9dJrmgpSxjH3BE5KiyTp-kGzUb4Pu6aCVe8KfdUzw1wZlQnsRCEV3MNm04TAeYQkkm9rPnzqH6Dq72YdWoRJ7q3ysomPPuN4KcAX5s2177Oo-Z3VnekSd59Bv-p1vOkoR9_GZcxRLFRGTZVhV"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[18px]">visibility</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">foto_equipa_branding.jpg</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Media / Assets</span>
+</div>
+</div>
+<div class="col-span-3 flex items-center gap-sm">
+<div class="w-7 h-7 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-label-sm">JD</div>
+<span class="font-body-md text-body-md">João Duarte</span>
+</div>
+<div class="col-span-2 font-body-md text-body-md text-on-surface-variant">20 Out 2023</div>
+<div class="col-span-1 font-body-md text-body-md text-on-surface-variant">5.1 MB</div>
+<div class="col-span-1 flex justify-end gap-xs">
+<button class="p-1.5 hover:bg-primary-container/10 text-on-surface-variant rounded-lg transition-all" title="Renomear">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 hover:bg-primary-container/10 text-on-surface-variant rounded-lg transition-all" title="Alterar Proprietário">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+</button>
+<button class="p-1.5 hover:bg-error/10 text-error rounded-lg transition-all" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-12 px-lg py-md document-table-row transition-colors items-center">
+<div class="col-span-5 flex items-center gap-md">
+<div class="w-10 h-10 bg-primary-container/10 text-primary rounded-lg flex items-center justify-center shadow-sm border border-outline-variant">
+<span class="material-symbols-outlined" data-icon="article">article</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-on-surface">contrato_servicos_v4.docx</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Legal / Contratos</span>
+</div>
+</div>
+<div class="col-span-3 flex items-center gap-sm">
+<div class="w-7 h-7 rounded-full bg-outline-variant text-on-surface-variant flex items-center justify-center font-label-sm">AF</div>
+<span class="font-body-md text-body-md">Ana Fonseca</span>
+</div>
+<div class="col-span-2 font-body-md text-body-md text-on-surface-variant">22 Out 2023</div>
+<div class="col-span-1 font-body-md text-body-md text-on-surface-variant">1.1 MB</div>
+<div class="col-span-1 flex justify-end gap-xs">
+<button class="p-1.5 hover:bg-primary-container/10 text-on-surface-variant rounded-lg transition-all" title="Renomear">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 hover:bg-primary-container/10 text-on-surface-variant rounded-lg transition-all" title="Alterar Proprietário">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+</button>
+<button class="p-1.5 hover:bg-error/10 text-error rounded-lg transition-all" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Row 5 (Duplicate Alert) -->
+<div class="grid grid-cols-12 px-lg py-md document-table-row transition-colors items-center">
+<div class="col-span-5 flex items-center gap-md">
+<div class="w-10 h-10 bg-error-container text-on-error-container rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-sm">
+<span class="font-body-md text-body-md font-semibold text-on-surface">relatorio_financeiro_q3.pdf</span>
+<span class="bg-error text-on-error px-2 py-0.5 rounded-full font-label-sm text-[10px] duplicate-alert flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+                                    DUPLICADO
+                                </span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Backup / Importação</span>
+</div>
+</div>
+<div class="col-span-3 flex items-center gap-sm">
+<div class="w-7 h-7 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-label-sm">RA</div>
+<span class="font-body-md text-body-md">Ricardo Alves</span>
+</div>
+<div class="col-span-2 font-body-md text-body-md text-on-surface-variant">22 Out 2023</div>
+<div class="col-span-1 font-body-md text-body-md text-on-surface-variant">2.4 MB</div>
+<div class="col-span-1 flex justify-end gap-xs">
+<button class="p-1.5 hover:bg-primary-container/10 text-on-surface-variant rounded-lg transition-all" title="Renomear">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-1.5 hover:bg-primary-container/10 text-on-surface-variant rounded-lg transition-all" title="Alterar Proprietário">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+</button>
+<button class="p-1.5 hover:bg-error/10 text-error rounded-lg transition-all" title="Eliminar">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="px-lg py-sm bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">A mostrar 1 a 5 de 128 ficheiros</span>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex gap-xs">
+<button class="w-8 h-8 flex items-center justify-center bg-primary text-on-primary font-bold rounded-lg text-label-md">1</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high text-on-surface-variant rounded-lg text-label-md transition-all">2</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high text-on-surface-variant rounded-lg text-label-md transition-all">3</button>
+<span class="px-1 text-on-surface-variant">...</span>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high text-on-surface-variant rounded-lg text-label-md transition-all">26</button>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- System Stats / Activity (Bento style hint) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mt-xl">
+<div class="bg-surface p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Espaço Utilizado</span>
+<span class="material-symbols-outlined text-primary">cloud_done</span>
+</div>
+<div class="flex items-end gap-sm">
+<span class="font-display-lg text-[32px] font-bold leading-none">42.8 GB</span>
+<span class="font-label-md text-label-md text-on-surface-variant mb-1">de 100 GB</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden mt-sm">
+<div class="h-full bg-primary w-[42.8%]"></div>
+</div>
+</div>
+<div class="bg-surface p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Ficheiros Duplicados</span>
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<div class="flex items-end gap-sm">
+<span class="font-display-lg text-[32px] font-bold leading-none">14</span>
+<span class="font-label-md text-label-md text-error mb-1">Acção requerida</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">Ficheiros idênticos detectados em pastas diferentes.</p>
+</div>
+<div class="bg-surface p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface-variant">Actividade Recente</span>
+<span class="material-symbols-outlined text-secondary">history</span>
+</div>
+<div class="flex flex-col gap-xs">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md">12 Uploads</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Hoje</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md">4 Eliminações</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ontem</span>
+</div>
+</div>
+<button class="mt-xs text-primary font-semibold font-label-lg text-label-lg flex items-center gap-xs hover:underline">
+                    Ver todo o log <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg px-xl flex flex-col md:flex-row justify-between items-center gap-md bg-surface-container-low border-t border-outline-variant opacity-90">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<span class="font-headline-md text-headline-md text-on-surface">JI Sync</span>
+<span class="font-label-md text-label-md text-on-surface-variant">© 2024 JI Sync. All rights reserved.</span>
+</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Help Center</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</footer>
+<!-- Interactive Layer: Feedback Toasts (Mockup) -->
+<div class="fixed bottom-lg right-lg z-[100] flex flex-col gap-sm" id="toast-container"></div>
+<script>
+        // Micro-interactions and simple logic
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-primary' : 'bg-error';
+            const icon = type === 'success' ? 'check_circle' : 'error';
+            
+            toast.className = `${bgColor} text-on-primary px-lg py-md rounded-lg shadow-lg flex items-center gap-md transform translate-y-full transition-transform duration-300 ease-out`;
+            toast.innerHTML = `
+                <span class="material-symbols-outlined">${icon}</span>
+                <span class="font-label-lg text-label-lg">${message}</span>
+            `;
+            
+            container.appendChild(toast);
+            
+            // Trigger animation
+            setTimeout(() => {
+                toast.classList.remove('translate-y-full');
+            }, 10);
+            
+            // Remove after delay
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Add dummy event listeners to demo interaction
+        document.querySelectorAll('button[title]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.getAttribute('title');
+                showToast(`Acção "${action}" executada com sucesso.`, 'success');
+            });
+        });
+    </script>
+</body></html>

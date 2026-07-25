@@ -11,7 +11,7 @@ async function findById(id) {
  * projecto só aparecem na página desse projecto (findByLocation).
  *
  * Mostra: os documentos criados por este utilizador, os que não têm dono
- * definido (created_by NULL — compatibilidade com documentos antigos), e
+ * definido (created_by NULL,compatibilidade com documentos antigos), e
  * os que foram partilhados com este utilizador (document_collaborators).
  */
 async function findAll({ page, limit, userId }) {

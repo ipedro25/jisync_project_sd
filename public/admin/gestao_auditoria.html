@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-PT"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/png" href="/public/assets/login.png">
+<title> JI Sync | Logs e Auditoria</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Noto+Serif:wght@600;700&amp;family=Public+Sans:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#ffe8db",
+                    "surface-bright": "#faf9fa",
+                    "surface-variant": "#e3e2e3",
+                    "surface-container-high": "#e9e8e9",
+                    "inverse-on-surface": "#f1f0f1",
+                    "tertiary-fixed": "#ffdbc8",
+                    "secondary": "#6d5e00",
+                    "outline": "#737784",
+                    "secondary-fixed": "#f8e37f",
+                    "on-primary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e3e2e3",
+                    "on-tertiary-fixed-variant": "#743500",
+                    "inverse-surface": "#2f3032",
+                    "primary-fixed": "#d9e2ff",
+                    "primary-container": "#3366cc",
+                    "on-primary-fixed": "#001946",
+                    "outline-variant": "#c3c6d5",
+                    "on-secondary-fixed": "#211b00",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#00419d",
+                    "secondary-fixed-dim": "#dbc766",
+                    "on-secondary-fixed-variant": "#524600",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#b1c5ff",
+                    "surface-container-low": "#f4f3f4",
+                    "on-tertiary-fixed": "#321300",
+                    "background": "#faf9fa",
+                    "on-background": "#1a1c1d",
+                    "surface-dim": "#dadadb",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#e7ebff",
+                    "surface": "#faf9fa",
+                    "on-secondary-container": "#716205",
+                    "tertiary-fixed-dim": "#ffb68a",
+                    "surface-tint": "#2259bf",
+                    "surface-container": "#eeedee",
+                    "tertiary": "#863e00",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#b1c5ff",
+                    "on-surface-variant": "#434653",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#f5e07c",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#ab5100",
+                    "on-surface": "#1a1c1d",
+                    "primary": "#094cb2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "xl": "32px",
+                    "base": "4px",
+                    "md": "16px",
+                    "gutter": "24px",
+                    "container-max": "1440px",
+                    "2xl": "48px",
+                    "header-height": "64px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Noto Serif"],
+                    "label-sm": ["Public Sans"],
+                    "label-lg": ["Public Sans"],
+                    "headline-lg": ["Noto Serif"],
+                    "display-lg": ["Noto Serif"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "headline-lg-mobile": ["Noto Serif"],
+                    "label-md": ["Public Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #faf9fa;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f4f3f4;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c3c6d5;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background antialiased min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-lg h-[64px] bg-primary-container shadow-sm">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-on-primary">JI Sync</span>
+<nav class="hidden md:flex items-center gap-lg">
+<a href="/admin/index.html" class="font-body-md text-body-md text-on-primary-container opacity-80 hover:bg-primary/10 transition-colors px-md rounded-lg py-2">Dashboard</a>
+<a href="/admin/gestao_utilizadores.html" class="font-body-md text-body-md text-on-primary-container opacity-80 hover:bg-primary/10 transition-colors px-md rounded-lg py-2" href="#">Utilizadores</a>
+<a href="/admin/gestao_documentos.html" class="font-body-md text-body-md text-on-primary border-b-2 border-on-primary py-2 h-full flex items-center" >Documentos</a>
+<a href="/admin/gestao_projectos.html" class="font-body-md text-body-md text-on-primary-container opacity-80 hover:bg-primary/10 transition-colors px-md rounded-lg py-2">Projectos</a>
+<a href="/admin/gestao_auditoria.html" class="font-body-md text-body-md text-on-primary-container opacity-80 hover:bg-primary/10 transition-colors px-md rounded-lg py-2">Auditoria</a>
+</nav>
+</div>
+<div class="flex-1 max-w-xl mx-xl hidden md:block">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-md text-on-primary-container/80">search</span>
+<input class="w-full bg-on-primary/10 border-none rounded-lg py-sm pl-xl pr-md text-on-primary placeholder:text-on-primary/60 focus:ring-2 focus:ring-on-primary/30 transition-all font-body-md" placeholder="Procurar logs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-sm text-on-primary hover:bg-on-primary/10 transition-colors rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-primary-container"></span>
+</button>
+<button class="p-sm text-on-primary hover:bg-on-primary/10 transition-colors rounded-full">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="flex items-center gap-xs p-xs pr-sm text-on-primary hover:bg-on-primary/10 transition-colors rounded-full ml-sm">
+<span class="material-symbols-outlined text-[32px]">account_circle</span>
+<span class="font-label-md hidden lg:block">Admin</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="mt-[64px] flex-1 max-w-[1440px] mx-auto w-full p-lg flex flex-col gap-lg">
+<!-- Header & Top Actions -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Logs e Auditoria</h1>
+<p class="font-body-md text-on-surface-variant">Histórico completo de transações e atividades do sistema para conformidade.</p>
+</div>
+<div class="flex flex-wrap items-center gap-sm">
+<button class="flex items-center gap-xs px-md h-[40px] border border-outline-variant text-primary font-label-lg hover:bg-primary-fixed-dim transition-colors rounded-lg">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                    Exportar CSV
+                </button>
+<button class="flex items-center gap-xs px-md h-[40px] border border-outline-variant text-primary font-label-lg hover:bg-primary-fixed-dim transition-colors rounded-lg">
+<span class="material-symbols-outlined text-[20px]">picture_as_pdf</span>
+                    Relatório PDF
+                </button>
+<button class="flex items-center gap-xs px-md h-[40px] bg-error text-on-error font-label-lg hover:opacity-90 transition-all rounded-lg shadow-sm" onclick="confirmClear()">
+<span class="material-symbols-outlined text-[20px]">delete_sweep</span>
+                    Limpar Logs Antigos
+                </button>
+</div>
+</div>
+<!-- Filter Bento Box -->
+<div class="bg-surface border border-outline-variant rounded-xl p-md grid grid-cols-1 md:grid-cols-4 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Período</label>
+<select class="w-full h-[40px] px-sm bg-surface-bright border border-outline-variant rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none font-body-md">
+<option>Últimas 24 horas</option>
+<option>Últimos 7 dias</option>
+<option selected="">Últimos 30 dias</option>
+<option>Personalizado</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Tipo de Evento</label>
+<select class="w-full h-[40px] px-sm bg-surface-bright border border-outline-variant rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none font-body-md">
+<option value="">Todos os Eventos</option>
+<option value="security">Segurança</option>
+<option value="data">Alteração de Dados</option>
+<option value="system">Sistema</option>
+<option value="access">Acesso</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-on-surface-variant">Utilizador</label>
+<input class="w-full h-[40px] px-sm bg-surface-bright border border-outline-variant rounded-lg focus:ring-1 focus:ring-primary focus:border-primary outline-none font-body-md" placeholder="Nome ou ID..." type="text"/>
+</div>
+<div class="flex items-end">
+<button class="w-full h-[40px] bg-primary text-on-primary font-label-lg hover:bg-primary-container transition-all rounded-lg flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                    Aplicar Filtros
+                </button>
+</div>
+</div>
+<!-- Main Data Table Container -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm flex flex-col">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-md py-sm font-label-sm uppercase text-on-surface-variant">Data e Hora</th>
+<th class="px-md py-sm font-label-sm uppercase text-on-surface-variant">Utilizador</th>
+<th class="px-md py-sm font-label-sm uppercase text-on-surface-variant">Ação</th>
+<th class="px-md py-sm font-label-sm uppercase text-on-surface-variant">Módulo</th>
+<th class="px-md py-sm font-label-sm uppercase text-on-surface-variant">Descrição</th>
+<th class="px-md py-sm font-label-sm uppercase text-on-surface-variant">IP</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-md font-body-md text-on-surface">2024-05-20 14:23:41</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-label-md">AM</div>
+<span class="font-body-md text-on-surface">André Martins</span>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="px-sm py-xs bg-secondary-container text-on-secondary-container rounded-full font-label-sm">LOGIN_SUCCESS</span>
+</td>
+<td class="px-md py-md font-body-md text-on-surface-variant">Autenticação</td>
+<td class="px-md py-md font-body-md text-on-surface max-w-xs truncate">Início de sessão bem-sucedido via Web Browser.</td>
+<td class="px-md py-md font-body-md text-on-surface-variant">192.168.1.45</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-md font-body-md text-on-surface">2024-05-20 13:10:05</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary font-bold text-label-md">SC</div>
+<span class="font-body-md text-on-surface">Sara Costa</span>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="px-sm py-xs bg-error-container text-on-error-container rounded-full font-label-sm text-[10px]">DELETE_USER</span>
+</td>
+<td class="px-md py-md font-body-md text-on-surface-variant">Gestão de RH</td>
+<td class="px-md py-md font-body-md text-on-surface max-w-xs truncate">Utilizador ID #4592 removido permanentemente.</td>
+<td class="px-md py-md font-body-md text-on-surface-variant">10.0.0.12</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-md font-body-md text-on-surface">2024-05-20 11:45:30</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant font-bold text-label-md">SY</div>
+<span class="font-body-md text-on-surface">System Agent</span>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="px-sm py-xs bg-primary-fixed text-on-primary-fixed-variant rounded-full font-label-sm">AUTO_BACKUP</span>
+</td>
+<td class="px-md py-md font-body-md text-on-surface-variant">Infraestrutura</td>
+<td class="px-md py-md font-body-md text-on-surface max-w-xs truncate">Backup diário concluído no servidor AWS-S3-EU-1.</td>
+<td class="px-md py-md font-body-md text-on-surface-variant">Internal</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-md font-body-md text-on-surface">2024-05-20 09:12:12</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-bold text-label-md">JP</div>
+<span class="font-body-md text-on-surface">João Pereira</span>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="px-sm py-xs bg-surface-container-high text-on-surface-variant rounded-full font-label-sm">UPDATE_SETTINGS</span>
+</td>
+<td class="px-md py-md font-body-md text-on-surface-variant">Configurações</td>
+<td class="px-md py-md font-body-md text-on-surface max-w-xs truncate">Alterada política de retenção de dados para 24 meses.</td>
+<td class="px-md py-md font-body-md text-on-surface-variant">192.168.1.88</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-md py-md font-body-md text-on-surface">2024-05-20 08:30:00</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-label-md">AM</div>
+<span class="font-body-md text-on-surface">André Martins</span>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="px-sm py-xs bg-error-container text-on-error-container rounded-full font-label-sm">UNAUTHORIZED_ACCESS</span>
+</td>
+<td class="px-md py-md font-body-md text-on-surface-variant">Segurança</td>
+<td class="px-md py-md font-body-md text-on-surface max-w-xs truncate">Tentativa de acesso a recurso protegido sem permissão.</td>
+<td class="px-md py-md font-body-md text-on-surface-variant">192.168.1.45</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="p-md flex items-center justify-between border-t border-outline-variant bg-surface-bright">
+<span class="font-label-md text-on-surface-variant">A mostrar 1 a 5 de 1,240 entradas</span>
+<div class="flex items-center gap-sm">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container-low disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-on-primary font-label-md">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container-low font-label-md">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container-low font-label-md">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container-low font-label-md">248</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- System Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-surface-container-low border border-outline-variant p-lg rounded-xl flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-on-surface-variant uppercase">Volume de Logs</span>
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<div class="flex items-end gap-md">
+<span class="font-headline-lg text-headline-lg">452k</span>
+<span class="font-label-md text-secondary mb-1 flex items-center">+12% <span class="material-symbols-outlined text-[14px]">arrow_upward</span></span>
+</div>
+<p class="font-label-md text-on-surface-variant">Registos acumulados este mês</p>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-lg rounded-xl flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-on-surface-variant uppercase">Alertas de Segurança</span>
+<span class="material-symbols-outlined text-error">gpp_maybe</span>
+</div>
+<div class="flex items-end gap-md">
+<span class="font-headline-lg text-headline-lg text-error">03</span>
+<span class="font-label-md text-error mb-1">Crítico</span>
+</div>
+<p class="font-label-md text-on-surface-variant">Últimas 24 horas</p>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-lg rounded-xl flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-on-surface-variant uppercase">Retenção</span>
+<span class="material-symbols-outlined text-secondary">database</span>
+</div>
+<div class="flex items-end gap-md">
+<span class="font-headline-lg text-headline-lg">180 dias</span>
+</div>
+<p class="font-label-md text-on-surface-variant">Limpeza automática configurada</p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg px-xl flex flex-col md:flex-row justify-between items-center gap-md bg-surface-container-low border-t border-outline-variant">
+<div class="flex flex-col gap-xs">
+<span class="font-headline-md text-on-surface">JI Sync</span>
+<span class="font-label-md text-on-surface-variant opacity-90">© 2024 JI Sync. All rights reserved.</span>
+</div>
+<div class="flex items-center gap-lg">
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Help Center</a>
+<a class="font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</footer>
+<!-- Interactive Script -->
+<script>
+        function confirmClear() {
+            if(confirm('Tem a certeza que deseja eliminar os logs com mais de 30 dias? Esta ação não pode ser revertida.')) {
+                alert('Processo de limpeza iniciado. Receberá uma notificação quando estiver concluído.');
+            }
+        }
+
+        // Simple row selection toggle
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                row.classList.toggle('bg-primary-fixed/20');
+            });
+        });
+    </script>
+</body></html>

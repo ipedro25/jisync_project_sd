@@ -6,6 +6,12 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   password: process.env.DB_PASS,
   port:     Number(process.env.DB_PORT),
+
+  // Mantém as ligações TCP "vivas" com pacotes periódicos — reduz a
+  // probabilidade de o sistema operativo, uma VPN, ou um firewall
+  // cortarem uma ligação inactiva sem o pg saber.
+  keepAlive: true,
+  keepAliveInitialDelayMillis: 10_000,
 });
 
 // Detecta erros de conexão ociosa (ex: PostgreSQL reiniciado)

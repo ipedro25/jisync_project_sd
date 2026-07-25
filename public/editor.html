@@ -33,7 +33,7 @@
     --sans:           'Inter', sans-serif;
     --label:          'Public Sans', sans-serif;
     --topbar-h:       56px;
-    --toolbar-h:      44px;
+    --toolbar-h:      88px;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -246,17 +246,16 @@
 
   /* ── QUILL TOOLBAR OVERRIDE ── */
   .ql-toolbar.ql-snow {
-    height: var(--toolbar-h);
+    min-height: var(--toolbar-h);
     background: var(--paper);
     border: none;
     border-bottom: 1px solid var(--outline-var);
-    padding: 4px 16px;
-    display: flex; align-items: center; flex-wrap: nowrap;
-    overflow-x: auto; gap: 2px;
-    scrollbar-width: none;
+    padding: 6px 16px;
+    display: flex; align-items: center; flex-wrap: wrap;
+    row-gap: 4px; gap: 2px;
+    overflow: visible;
     flex-shrink: 0;
   }
-  .ql-toolbar.ql-snow::-webkit-scrollbar { display: none; }
 
   .ql-toolbar.ql-snow .ql-formats { margin-right: 4px; border-right: 1px solid var(--outline-var); padding-right: 6px; }
   .ql-toolbar.ql-snow .ql-formats:last-child { border-right: none; }
@@ -496,7 +495,7 @@
 
   /* ── STATUS BAR ── */
   .statusbar {
-    height: 26px;
+    height: 34px;
     background: var(--primary);
     display: flex; align-items: center;
     padding: 0 16px; gap: 16px;
@@ -504,13 +503,13 @@
   }
   .statusbar-item {
     font-family: var(--label);
-    font-size: 11px; font-weight: 500;
+    font-size: 12.5px; font-weight: 500;
     color: rgba(255,255,255,0.8);
     display: flex; align-items: center; gap: 5px;
   }
-  .statusbar-item .material-symbols-outlined { font-size: 13px; }
+  .statusbar-item .material-symbols-outlined { font-size: 15px; }
   .online-dot {
-    width: 6px; height: 6px; border-radius: 50%;
+    width: 7px; height: 7px; border-radius: 50%;
     background: #69f0ae;
   }
 
@@ -1261,6 +1260,8 @@
     if (!text || !pendingRange) return;
 
     const quote = quill.getText(pendingRange.index, pendingRange.length);
+    const rangeIndex  = pendingRange.index;
+    const rangeLength = pendingRange.length;
     try {
       const res = await fetch(`${API}/documents/${roomId}/comments`, {
         method: 'POST',
@@ -1270,12 +1271,12 @@
       if (!res.ok) throw new Error(await res.text());
       const comment = await res.json();
 
-      quill.formatText(pendingRange.index, pendingRange.length, 'commentId', comment.id, 'user');
+      quill.formatText(rangeIndex, rangeLength, 'commentId', comment.id, 'user');
       comments.push(comment);
       renderComments();
-      closeCommentPopover();
+      closeCommentPopover(); // limpa pendingRange — só chamar depois de já não precisarmos dele
       showToast('Comentário adicionado');
-      if (socket) socket.emit('comment-sync', { action: 'add', comment, rangeIndex: pendingRange.index, rangeLength: pendingRange.length });
+      if (socket) socket.emit('comment-sync', { action: 'add', comment, rangeIndex, rangeLength });
     } catch (err) {
       console.error('[Comments] Falha ao comentar:', err.message);
       showToast('Erro ao adicionar comentário');

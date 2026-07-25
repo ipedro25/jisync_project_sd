@@ -28,8 +28,10 @@ module.exports = function wordSocket(io, socket) {
     const dbDoc = doc.rows[0];
 
     // Se o documento pertence a um projecto, só membros desse projecto podem entrar.
-    // Se for um documento pessoal com dono definido, só esse dono pode entrar
-    // (documentos antigos sem dono continuam acessíveis a todos).
+    // Se for um documento pessoal com dono definido, só o dono ou um colaborador
+    // convidado via partilha (document_collaborators) pode entrar — documentos
+    // antigos sem dono continuam acessíveis a todos.
+    let sharedRole = null; // papel de colaborador partilhado, reaproveitado abaixo
     if (dbDoc.project_id) {
       const isMember = await projectService.isMember(dbDoc.project_id, socket.user.id);
       if (!isMember) {
@@ -37,8 +39,11 @@ module.exports = function wordSocket(io, socket) {
         return;
       }
     } else if (dbDoc.created_by && dbDoc.created_by !== socket.user.id) {
-      socket.emit("access-denied", { message: "Não tens acesso a este documento." });
-      return;
+      sharedRole = await sharingService.getRole(roomId, socket.user.id);
+      if (!sharedRole) {
+        socket.emit("access-denied", { message: "Não tens acesso a este documento." });
+        return;
+      }
     }
 
     socket.join(roomId);
@@ -70,13 +75,9 @@ module.exports = function wordSocket(io, socket) {
 
     // ── NÍVEL 2: Modo leitura / NÍVEL 3: Edição completa ──
     // Além do limite de capacidade da sala, um "leitor" convidado via
-    // partilha (document_collaborators) fica sempre em modo leitura,
-    // independentemente de quantos editores já estão na sala.
-    let forcedViewer = false;
-    if (!dbDoc.project_id && dbDoc.created_by && dbDoc.created_by !== socket.user.id) {
-      const role = await sharingService.getRole(roomId, socket.user.id);
-      forcedViewer = role === "viewer";
-    }
+    // partilha fica sempre em modo leitura. Um "editor" convidado segue
+    // as mesmas regras de capacidade que o dono.
+    const forcedViewer = sharedRole === "viewer";
     socket.isViewer = forcedViewer || before.editors >= LIMITS.EDIT;
     presenceService.joinRoom(roomId, socket.id, socket.user, color, socket.isViewer);
     const after = presenceService.getCounts(roomId);

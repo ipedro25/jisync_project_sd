@@ -3,6 +3,8 @@ const path = require('path');
 const documentModel = require("../models/documentModel");
 const { getDocumentState, setDocumentState, deleteDocumentState } = require("../redis/documentCache");
 
+
+//Função para carregar um documento do Redis ou criar um novo se não existir
 async function loadOrCreate(id, userId) {
   // 1. Tenta Redis primeiro
   const cached = await getDocumentState(id).catch(() => null);
@@ -21,6 +23,8 @@ async function loadOrCreate(id, userId) {
   return doc;
 }
 
+
+//Função para listar todos os documentos, com paginação e filtragem por usuário
 async function findAll({ page, limit, userId }) {
   return documentModel.findAll({ page, limit, userId });
 }
@@ -30,6 +34,8 @@ async function findByLocation({ projectId, folderId = null }) {
   return documentModel.findByLocation({ projectId, folderId });
 }
 
+
+//Função para criar um novo documento, com base em um template (opcional)
 async function create(args) {
   const { name, type, template, projectId, folderId, createdBy } = args;
 
@@ -57,6 +63,7 @@ async function create(args) {
   return documentModel.create(payload);
 }
 
+//Função para atualizar um documento existente, com invalidação de cache Redis
 async function update(id, fields) {
   const doc = await documentModel.update(id, fields);
   // Invalida cache Redis para forçar releitura
@@ -64,13 +71,16 @@ async function update(id, fields) {
   return doc;
 }
 
+//Função para renomear um documento existente
 async function rename(id, name) {
   return update(id, { name });
 }
 
+//Função para remover um documento existente, com invalidação de cache Redis
 async function remove(id) {
   await deleteDocumentState(id).catch(() => null);
   return documentModel.remove(id);
 }
 
+//Exporta as funções do serviço de documentos
 module.exports = { loadOrCreate, findAll, findByLocation, create, update, rename, remove };
